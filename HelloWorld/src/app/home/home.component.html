@@ -1,12 +1,17 @@
 <h1>Welcome to Component Home</h1>
-<p class="spa">Chào bạn {{ name }}!</p>
-<p class="spa">Bạn đã {{ age }} tuổi</p>
+<p class="spa">Chào bạn {{ name | uppercase }} </p>
+<p class="spa">Bạn đã {{ age | number: "1.0-4" }} tuổi</p>
 
-<span *ngIf="age < 18" class="underAge">Bạn dưới 18 tuổi, bạn dưới tuổi vị thành niên!</span>
+<!-- <span *ngIf="age < 18" class="underAge">Bạn dưới 18 tuổi, bạn dưới tuổi vị thành niên!</span> -->
+<!-- <br> -->
+<!-- <span *ngIf="age >=18" class="overAge">Bạn trên 18 tuổi, bạn đã trưởng thành rồi!</span> -->
+<!-- <span *ngIf="age >=18" >Bạn trên 18 tuổi, bạn đã trưởng thành rồi!</span> -->
+<span *ngIf="age < 18; then condition1; else condition2" class="underAge"></span>
 <br>
-<span *ngIf="age >=18" class="overAge">Bạn trên 18 tuổi, bạn đã trưởng thành rồi!</span>
+<ng-template #condition1 class="underAge">Bạn dưới 18 tuổi</ng-template>
+<ng-template #condition2 class="overAge">Bạn trên 18 tuổi, bạn đã trưởng thành rồi!</ng-template>
 <br>
-<h2>Danh sách xe</h2> <br>
+<h2 onclick="alert('Hello!')">Danh sách xe</h2> <br>
 <div *ngFor="let thuonghieu of thuonghieus">
   <li>{{ thuonghieu }}</li>
 </div>
@@ -18,7 +23,12 @@
     </option>
   </select>
 </div>
-
+<br>
+<input [(ngModel)]="name">
+<br>
+<button (click)="tangTuoi()">Tăng tuổi</button>
+<br><br>
+<span>{{thuonghieus | json }}</span>
 
 
 
